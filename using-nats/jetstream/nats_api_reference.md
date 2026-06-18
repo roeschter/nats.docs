@@ -124,11 +124,13 @@ The stream from which data is sourced/mirrored MAY NOT be reachable. It may not 
 ### Stream Source and Mirror - With consumers
 **This feature is available from server version 2.14**
 
-Sourcing and mirroring streams can now make use of explicitly configured consumers. The consumer created in the origin stream (from which messages are beign sourced/mirrored) must be of type ``flow_control``.  This now supports workqueue and interest based stream. 
 
-It is strongly recommended to make best use of this feature by pre-creating consumers. There are some situation where such consumers will be auto-created for backwards compatibility. Please avoid relying on this feature.
+Sourcing and mirroring streams can now make use of explicitly configured consumers. The consumer created in the origin stream (from which messages are being sourced/mirrored) must be of type ``flow_control``.  This now supports workqueue and interest-based streams. 
 
-Sourcing and mirroring streams use 2 inbound and 2 outbound subjects to establish and control the data flow. When setting permissions or creating export/import agreements all 4 subjects may need to be considered.
+It is strongly recommended to make the best use of this feature by pre-creating consumers. There are some situations where such consumers will be auto-created for backwards compatibility. Please avoid relying on this feature.
+
+Sourcing and mirroring streams use 2 inbound and 2 outbound subjects to establish and control the data flow. When setting permissions or creating export/import agreements, all 4 subjects may need to be considered.
+
 
 | Subject                               | Direction | Description   | Reply | 
 |:--------------------------------------| :--- |:--------------------------------------------------------------------------------| :--- | 
@@ -141,7 +143,9 @@ Sourcing and mirroring streams use 2 inbound and 2 outbound subjects to establis
 #### Heartbeats and Retries
 The stream from which data is sourced/mirrored MAY NOT be reachable. It may not have been created yet OR the route may be down. This does not prevent the source/mirror agreement from being created.
 * The target stream will try to reset a consumer every 10s to 60s. (This value may change in the future or may be configurable). Note that delivery may therefore only resume after a short delay.
-* For active consumers heartbeats are sent at a rate of 1/s.
+
+* For active consumers, heartbeats are sent at a rate of 1/s.
+
 
 
 #### Constraints and Limitations
